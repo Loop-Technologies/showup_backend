@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.row{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 12px 12px 22px gray;
+    padding-right: 0%;
+    margin-top: 20px;
+}
+
+.l-img{
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: ;
+    border-bottom-right-radius: ;
+    height: 100%;
+    width: 100%;
+}
+
+.F-img{
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: ;
+    border-bottom-right-radius: ;
+    height: 100%;
+    width: 100%;
+}
+
+.A-img{
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: ;
+    border-bottom-right-radius: ;
+    width: 100%;
+    height: 80%;
+    
+}
+
+.register h1{
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: 'Pacifico', cursive;
+}
+
+.register h4{
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Pacifico', cursive;
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 50%;
+    background-color: rgb(5, 107, 5);
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    margin-left: 40px;
+}
+.btn1:hover{
+    background-color: white;
+    border: 1px solid;
+    color: black;
+    
+}
+
+.btn2{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 40%;
+    background-color: rgb(5, 107, 5);
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    margin-left: 30px;
+    
+}
+
+.btn2:hover{
+    background-color: white;
+    border: 1px solid;
+    color: black;
+    
+}
+.inp{
+    height: 50px;
+    width: 100%;
+    border: ;
+ padding-left: 10px;
+ width: 250px;
+ margin-left: 30px;
+}
+
+.inp2{
+    height: 50px;
+    width: 100%;
+ padding-left:10px;
+ margin-left:20px;
+ width: 250px;
+
+ 
+ 
+}
+
+section{
+    height: 300px;
+}
+
+.logo-r{
+    width: 200px;
+    height: 200px
+    paddibg: o;
+    
+}
+
+.s-img{
+    height: 600px;
+}
+
+.form-row {
+   margin-left: -60px;
+}
+
+.the1{
+    height: 500px;
+}
+
+

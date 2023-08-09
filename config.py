@@ -1,4 +1,5 @@
 from flask import Flask 
+from flask_sqlalchemy import SQLAlchemy
 import os
 app = Flask(__name__)
 
@@ -16,4 +17,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # Connect to the database
 # TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:clovertt123@localhost:5432/dbname'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:teming334@localhost:5432/showup'
+app
+
+db = SQLAlchemy(app)
