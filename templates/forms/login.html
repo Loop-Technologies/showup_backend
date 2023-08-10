@@ -12,12 +12,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-<style>
-   
-</style>
     </head>
     <body>
-
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
       <section>
           <div class="register py-5 bg-light">
             <div class="container">
@@ -35,7 +40,7 @@
                      <div class="col-lg-7 text-center py-5">
                         <h1 class="text-success">Welcame back</h1>
                       
-                        <h6>please enter your informations</h6>
+                        <h6 id="enter_info" >please enter your information</h6>
                              <form action="login" method="post">
                                    <!--email-->
                                <div class="form-row pt-5 py-2"> 
@@ -60,7 +65,7 @@
                           
                            <!--forgot password-->
                         <a href="#">Forgot password</a>
-                        <p>Dont have an account? <a href="#">Register</a></p>
+                        <p>Dont have an account? <a href={{url_for("signup")}}>Register</a></p>
                              </form>
                      </div>
               </div>

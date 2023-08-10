@@ -1,0 +1,23 @@
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>phone</th>
+        <th>password</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for dt in data %}
+        <tr>
+          <td>{{ dt.fan_id }}</td>
+          <td>{{ dt.full_name }}</td>
+          <td>{{ dt.email }}</td>
+          <td>{{ dt.phone_number}}</td>
+          <td>{{ dt.password}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>

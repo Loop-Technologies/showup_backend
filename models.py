@@ -1,12 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
 
 
-app = Flask(__name__)
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
-    
+
+
+
+
 class fan(db.Model):
     __tablename__ = 'fan'
     fan_id = db.Column(db.Integer, primary_key=True)
@@ -15,7 +16,6 @@ class fan(db.Model):
     email = db.Column(db.String(200), unique=True, nullable=False)
     phone_number = db.Column(db.Integer, nullable=False)
     password = db.Column(db.String(200), nullable=False)
-    
     
 
 
