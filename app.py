@@ -87,7 +87,7 @@ def login():
         user_id = user.fan_id
         
         user_password = user.password
-        is_valid = check_password_hash(hashed_password, user_password)
+        is_valid = check_password_hash(user_password, password)
         if user and is_valid:
                id = fan.query.filter_by(email = user_email).first()
                user_id = id.fan_id
