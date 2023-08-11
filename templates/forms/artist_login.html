@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width" initial-scale="1.0">
 <title>Show up</title>
-<link rel="stylesheet" href="./static/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="./static/js/bootstrap.min.js">
-<link rel="stylesheet" href="./static/css/style.css">
+<link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/static/js/bootstrap.min.js">
+<link rel="stylesheet" href="/static/css/style.css">
 <!--for the font-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,21 +14,15 @@
 
     </head>
     <body>
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class="flash-messages">
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
+      {% if errors %}
+      <div class="error">{{ errors }}</div>
       {% endif %}
-    {% endwith %}
       <section>
           <div class="register py-5 bg-light">
             <div class="container">
               <div class="row no-gutters">
                  <div class="col-lg-5">
-                     <img class=" card-img" class="l-img" src="./static/img/f1.jpg" class="img-fluid" alt="">
+                     <img class=" card-img" class="l-img" src="/static/img/f2.jpg" class="img-fluid" alt="">
                      <div class="card-img-overlay">
                       <div class="card-body text-light">
                         
@@ -41,11 +35,11 @@
                         <h1 class="text-success">Welcame back</h1>
                       
                         <h6 id="enter_info" >please enter your information</h6>
-                             <form action="login" method="post">
+                             <form action="artist_login" method="post">
                                    <!--email-->
                                <div class="form-row pt-5 py-2"> 
                                    <div class="offset-1 col-lg-10 ">
-                                <input type="email" class="inp" placeholder="Enter email" name="email" required>
+                                <input type="text" class="inp" placeholder="Enter username" name="username" required>
                                    </div>
                                </div> 
                                 
@@ -65,14 +59,9 @@
                           
                            <!--forgot password-->
                         <a href="#">Forgot password</a>
-                        <p>Dont have an account? <a href={{url_for("signup")}}>Register</a></p>
+                        <p>Dont have an account? <a href={{url_for("artist_signup")}}>Register</a></p>
                              </form>
                      </div>
               </div>
             </div>
           </div>
-      </section>
-       
-
-    </body>
-</html>

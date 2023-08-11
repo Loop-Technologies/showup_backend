@@ -2,21 +2,23 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>userame</th>
+        <th>name</th>
         <th>Email</th>
         <th>phone</th>
-      
+ 
 
       </tr>
     </thead>
     <tbody>
       {% for dt in data %}
         <tr>
-          <td>{{ dt.fan_id }}</td>
+          <td>{{ dt.artist_id }}</td>
+          <td>{{ dt.username }}</td>
           <td>{{ dt.full_name }}</td>
           <td>{{ dt.email }}</td>
           <td>{{ dt.phone_number}}</td>
-          
+        
         </tr>
       {% endfor %}
     </tbody>
