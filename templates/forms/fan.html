@@ -1,0 +1,138 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Test Form</title>
+    <!-Include Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Test Form</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="full_name" class="form-control-label">Full Name</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-control-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-control-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <label for="phone_number" class="form-control-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+        </form>
+    </div>
+    <!-- Include Bootstrap JS -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>  -->
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fan Profile</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4">User Profile</h1>
+
+      <div id="profileDetails">
+        <!-- Display user profile details here -->
+        <p><strong>Name:</strong> {{ fan.full_name }}</p>
+        <p><strong>Email:</strong> {{ fan.email }}</p>
+        <p><strong>Phone:</strong> {{ fan.phone_number }}</p>
+
+        <button id="editButton" class="btn btn-primary">Edit</button>
+        <form
+          id="deleteForm"
+          method="POST"
+          action="{{ url_for('delete_account') }}"
+        >
+          <input type="hidden" name="profile_type" value="fan" />
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+
+      <div id="editForm" style="display: none">
+        <!-- Edit form -->
+        <form
+          id="profileForm"
+          method="POST"
+          action="{{ url_for('fan_profile') }}"
+        >
+          <div class="form-group">
+            <label for="full_name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="full_name"
+              name="full_name"
+              value="{{ fan.full_name }}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              value="{{ fan.email }}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Phone</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone_number"
+              name="phone_number"
+              value="{{ fan.phone_number }}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password"
+            name="password" value="{{fan.password}}>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Edit button click event
+        $("#editButton").click(function () {
+          $("#profileDetails").hide();
+          $("#editForm").show();
+        });
+
+        // Cancel button click event
+        $("#cancelButton").click(function () {
+          $("#editForm").hide();
+          $("#profileDetails").show();
+        });
+      });
+    </script>
+  </body>
+</html>
