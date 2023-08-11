@@ -45,12 +45,18 @@ def fan_signup():
         password =  request.form.get('password')
         password1 = request.form.get('password1') #password confirmation
         
-        #creating a password hash
-        hashed_password = generate_password_hash(password)
         
-        
-
         if password == password1:
+            #eliminating spaces in password string             
+            password_str = ""
+            for char in password:
+                if char != "":
+                    password_str += char
+            print(password_str)
+                    
+            #creating a password hash
+            hashed_password = generate_password_hash(password_str)
+    
             #create a new user and save his/her data to the database
             new_fan = fan.query.filter_by(email=user_email).first()
             
@@ -65,7 +71,7 @@ def fan_signup():
                     db.session.commit()
                     #login_user(new_user, remember=True)
                     flash('Account created!', 'success')
-                    return redirect(url_for('login'))
+                    return redirect(url_for('fan_login'))
                     
                 except:
                     flash('failed to register!', 'error')
@@ -97,7 +103,7 @@ def fan_login():
         else:
             
             flash('Invalid email or password','error')
-            return render_template('./forms/login.html',email = user_email)
+            return render_template('./forms/fan_login.html',email = user_email)
     return render_template("./forms/fan_login.html")
             
 
@@ -137,13 +143,18 @@ def artist_signup():
         user_email = request.form.get('email')
         password =  request.form.get('password')
         password1 = request.form.get('password1') #password confirmation
-        
-        #creating a password hash
-        hashed_password = generate_password_hash(password)
-        
+    
+        if password == password1:
         
 
-        if password == password1:
+            #eliminating spaces in password string             
+            password_str = ""
+            for char in password:
+                if char != "":
+                    password_str += char
+            #creating a password hash
+            hashed_password = generate_password_hash(password_str)
+       
             #create a new user and save his/her data to the database
             new_artist = artist.query.filter_by(username=u_name).first()
             
@@ -158,7 +169,7 @@ def artist_signup():
                     db.session.commit()
                     #login_user(new_user, remember=True)
                     flash('Account created!', 'success')
-                    return redirect(url_for('login'))
+                    return redirect(url_for('artist_login'))
                     
                 except:
                     flash('failed to register!', 'error')

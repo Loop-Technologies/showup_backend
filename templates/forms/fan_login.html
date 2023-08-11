@@ -14,9 +14,15 @@
 
     </head>
     <body>
-      {% if errors %}
-      <div class="error">{{ errors }}</div>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
       {% endif %}
+    {% endwith %}
       <section>
           <div class="register py-5 bg-light">
             <div class="container">
@@ -35,7 +41,7 @@
                         <h1 class="text-success">Welcame back</h1>
                       
                         <h6 id="enter_info" >please enter your information</h6>
-                             <form action="login" method="post">
+                             <form action="fan_login" method="post">
                                    <!--email-->
                                <div class="form-row pt-5 py-2"> 
                                    <div class="offset-1 col-lg-10 ">
