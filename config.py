@@ -20,4 +20,3 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Zonecoco2003.@loc
 db = SQLAlchemy(app)
 # Connect to the database
 # TODO IMPLEMENT DATABASE URL
-
