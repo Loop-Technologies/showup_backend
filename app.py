@@ -4,22 +4,38 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import sessionmaker
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from flask_login import UserMixin, LoginManager, current_user, login_user, logout_user
-from models import db, fan, artist
-from config import  SECRET_KEY, SQLALCHEMY_DATABASE_URI
+from flask_login import UserMixin, LoginManager, current_user, login_user, logout_user, login_required
+from models import db, Fan, Artist, SysAdmin, Show,Payment
+from flask_paginate import Pagination, get_page_args
+# from config import  SECRET_KEY, SQLALCHEMY_DATABASE_URI
+from config import app
 
-#from flask_wtf import FlaskForm
-#from wtforms import StringField, PasswordField, SubmitField
-#from wtforms.validators import DataRequired
 
-app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-app.config['SECRET_KEY'] = SECRET_KEY
 
+# app = Flask(__name__)
+
+# from venue_listing import venue_listing as venue_listing
+# app.register_blueprint(venue_listing)
+
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+# app.config['SECRET_KEY'] = SECRET_KEY
+
+
+
+
+login_manager = LoginManager()
+# login_manager.login_view = 'app.login'
+login_manager.init_app(app)
+
+
+
+@login_manager.user_loader
+def load_user(user):
+    return Fan.query.get(user)
 
 db.init_app(app)
-#login = LoginManager(app)
 
 engine = create_engine('postgresql://postgres:teming334@localhost/showup')
 session = sessionmaker(bind=engine)
@@ -46,19 +62,14 @@ def fan_signup():
         password1 = request.form.get('password1') #password confirmation
         
         
-        if password == password1:
-            #eliminating spaces in password string             
-            password_str = ""
-            for char in password:
-                if char != "":
-                    password_str += char
-            print(password_str)
+        if password == password1:  
+            
                     
             #creating a password hash
-            hashed_password = generate_password_hash(password_str)
+            hashed_password = generate_password_hash(password)
     
             #create a new user and save his/her data to the database
-            new_fan = fan.query.filter_by(email=user_email).first()
+            new_fan = Fan.query.filter_by(email=user_email).first()
             
             #checking to see if the email entered has already been used
             if new_fan is not None:
@@ -66,10 +77,10 @@ def fan_signup():
                
             else:
                 try:
-                    new_user = fan(full_name=fullname,email=user_email, phone_number=phonenumber,password=hashed_password)
+                    new_user = Fan(full_name=fullname,email=user_email, phone_number=phonenumber,password=hashed_password)
                     db.session.add(new_user)
                     db.session.commit()
-                    #login_user(new_user, remember=True)
+                    
                     flash('Account created!', 'success')
                     return redirect(url_for('fan_login'))
                     
@@ -83,8 +94,7 @@ def fan_signup():
             
 
 
-#@login.user_loader()            
-            
+
             
             
             
@@ -95,11 +105,12 @@ def fan_login():
         user_email = request.form.get('email')
         password = request.form.get('password')
         
-        user = fan.query.filter_by(email=user_email).first()
+        user = Fan.query.filter_by(email=user_email).first()
         user_password = user.password
         is_valid = check_password_hash(user_password, password)
         if is_valid and user:
-            return render_template('./pages/home.html', user=user)
+            # login_user(user)
+            return render_template('./pages/home.html')
         else:
             
             flash('Invalid email or password','error')
@@ -108,10 +119,13 @@ def fan_login():
             
 
   
-  
+
+
+#admin views for the various tables in the database
 admin = Admin(app)  
-admin.add_view(ModelView(fan, db.session))
-admin.add_view(ModelView(artist, db.session))
+admin.add_view(ModelView(Fan, db.session))
+admin.add_view(ModelView(Artist, db.session))
+admin.add_view(ModelView(SysAdmin, db.session))
   
 
 
@@ -120,7 +134,7 @@ admin.add_view(ModelView(artist, db.session))
 #tesing database connection         
 @app.route('/get_data')
 def get_fan_data():
-    data = fan.query.all()
+    data = Fan.query.all()
     
     return render_template('./forms/test.html', data=data)
 
@@ -128,7 +142,7 @@ def get_fan_data():
 #tesing database connection         
 @app.route('/get_artist_data')
 def get_artist_data():
-    data = artist.query.all()
+    data = Artist.query.all()
     
     return render_template('./forms/test1.html', data=data)
 
@@ -148,15 +162,15 @@ def artist_signup():
         
 
             #eliminating spaces in password string             
-            password_str = ""
-            for char in password:
-                if char != "":
-                    password_str += char
+            # password_str = ""
+            # for char in password:
+            #     if char != "":
+            #         password_str += char
             #creating a password hash
-            hashed_password = generate_password_hash(password_str)
+            hashed_password = generate_password_hash(password)
        
             #create a new user and save his/her data to the database
-            new_artist = artist.query.filter_by(username=u_name).first()
+            new_artist = Artist.query.filter_by(username=u_name).first()
             
             #checking to see if the email entered has already been used
             if new_artist is not None:
@@ -164,7 +178,7 @@ def artist_signup():
                
             else:
                 try:
-                    new_user = artist(username=u_name,email=user_email, phone_number=phonenumber,password=hashed_password)
+                    new_user = Artist(username=u_name,email=user_email, phone_number=phonenumber,password=hashed_password)
                     db.session.add(new_user)
                     db.session.commit()
                     #login_user(new_user, remember=True)
@@ -190,18 +204,55 @@ def artist_login():
         user_name = request.form.get('username')
         password = request.form.get('password')
         
-        user = artist.query.filter_by(username = user_name).first()
+        user = Artist.query.filter_by(username = user_name).first()
         user_password = user.password
         is_valid = check_password_hash(user_password, password)
         if is_valid and user:
-            return render_template('./pages/home.html', user=user)
+            return render_template('./pages/hom.html')
         else:
             
             flash('Invalid email or password','error')
-            return render_template('./forms/login.html',username = user_name)
+            return render_template('./forms/login.html')
     return render_template("./forms/artist_login.html")
             
 
+
+
+
+
+
+
+
+# #pagination of venues 
+# @app.route("/venues", methods = ["GET", "POST"])
+# def venues():
+ 
+#     venues = fan.query.paginate(page=1,per_page = 4)
+#     print(venues.items)
+#     print(venues.pages)
+#     Paginated_items= []
+#     #  for i in range (venues.pages):
+        
+#     return render_template("pages/venues.html",venues = venues)    
+            
+# #loading more items to the page
+# @app.route("/venues/load_more",methods = ["GET", "POST"])
+# def load_more():
+#     venues = fan.query.paginate(page=2,per_page = 4)
+#     if request.method == "post":
+        
+#         print(venues.items)           
+#         # return render_template("pages/venues.html",venues = venues)
+
+
+#     return render_template("pages/venues.html",venues = venues)
+
+
+
+@app.route("/venues/<int:page_num>")
+def venues_listing(page_num):
+    venues = Fan.query.paginate(page=page_num, per_page = 6, error_out = False)
+    return render_template("pages/venues.html",venues = venues)
 
 
 

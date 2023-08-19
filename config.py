@@ -1,4 +1,5 @@
 import os
+from flask import Flask
 
 SECRET_KEY = os.urandom(32)
 # Grabs the folder where the script runs.
@@ -14,3 +15,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:teming334@localhost/showup'
 
 
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SECRET_KEY'] = SECRET_KEY

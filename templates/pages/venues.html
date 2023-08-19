@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>venues</title>
+    <link href="/static/css/style_p.css" rel="stylesheet" type="text/css"/>
+    <style>
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        {% for venue in venues.items %}
+        <div class="my-div">
+            <ul>
+                <li>{{venue.full_name}}</li>
+                <li>{{venue.email}}</li>
+                <li>{{venue.phone_number}}</li>
+            </ul>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+
+
+    <div class = "page_numbers">
+            {%for page in venues.iter_pages(left_edge=1, right_edge = 1, left_current = 1, right_current = 1)%}
+                {%if page%}
+            
+                <a href="{{url_for('venues_listing',page_num=page)}}">{{page}}</a>
+                
+                {% else %}
+                ...
+                {%endif%}
+                
+
+            {%endfor%}
+            
+    </div>  
+       
+
+</body>
+</html>
