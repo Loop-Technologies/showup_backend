@@ -77,7 +77,7 @@ def search():
 # if no search found from the user input, return the error page 
     if not Artist_result and not Show_result and not Venue_result:
         return render_template('/pages/error.html')
-    return render_template('/pages/results.html', Artist_result=Artist_result, Show_result=Show_result, Venue_result=Venue_result)
+    return render_template('/pages/result.html', Artist_result=Artist_result, Show_result=Show_result, Venue_result=Venue_result)
 
 
 

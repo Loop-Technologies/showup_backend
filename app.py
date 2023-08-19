@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, request, url_for, flash, Blu
 from sqlalchemy import create_engine
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.orm import sessionmaker
+# from sqlalchemy.orm import sessionmaker
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import UserMixin, LoginManager, current_user, login_user, logout_user
@@ -14,13 +14,13 @@ from config import  app
 #from wtforms.validators import DataRequired
 
 
-Session(app)
+# Session(app)
 
 db.init_app(app)
 #login = LoginManager(app)
 
-engine = create_engine('postgresql://postgres:teming334@localhost/showup')
-session = sessionmaker(bind=engine)
+# engine = create_engine('postgresql://postgres:teming334@localhost/showup')
+# session = sessionmaker(bind=engine)
 
 
 
@@ -208,11 +208,50 @@ def artist_login():
     
 
 
-#...
+#...forgot password functionality
        
+@app.route("/forgot_password", methods=["GET", "POST"])
+def forgot_password():
+    if request.method == "POST":
+        email = request.form.get('email')
+        
+        # Check if the email exists in the Fan or Artist table
+        fan = Fan.query.filter_by(email=email).first()
+        artist = Artist.query.filter_by(email=email).first()
+
+        if fan or artist:
+            # Generate a password reset token and send it to the user's email
+            # This step would typically involve sending an email with a password reset link
+            # For simplicity, we'll generate a temporary token and display it on the page
+            reset_token = "temporary_reset_token"
+            flash(f"A password reset link has been sent to your email: {email}.", "success")
+            flash(f"Temporary Reset Token: {reset_token}", "info")
+        else:
+            flash("No user found with that email.", "error")
+    
+    return render_template("./forms/forgot_password.html")
 
 
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_password():
+    if request.method == "POST":
+        reset_token = request.form.get('reset_token')
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
 
+        # Check if the reset token is valid (e.g., verify it against the database)
+        # Also, check if the new password and confirm password match
+
+        if reset_token == "temporary_reset_token" and new_password == confirm_password:
+            # Reset the user's password
+            # Update the user's password in the Fan or Artist table
+
+            flash("Your password has been reset successfully.", "success")
+            return redirect(url_for("fan_login"))  # or artist_login, depending on the user type
+        else:
+            flash("Invalid reset token or passwords do not match.", "error")
+
+    return render_template("./forms/reset_password.html")
 
 if __name__ == '__main__':  
   app.run(debug=True)
