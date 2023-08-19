@@ -106,14 +106,17 @@ def fan_login():
         password = request.form.get('password')
         
         user = Fan.query.filter_by(email=user_email).first()
-        user_password = user.password
-        is_valid = check_password_hash(user_password, password)
-        if is_valid and user:
-            # login_user(user)
-            return render_template('./pages/home.html')
+        if user:
+            user_password = user.password
+            is_valid = check_password_hash(user_password, password)
+            if is_valid:
+                # login_user(user)
+                return render_template('./pages/home.html')
+            else:
+                flash('Incorrect password','error')
         else:
             
-            flash('Invalid email or password','error')
+            flash('Account doesnt exit','error')
             return render_template('./forms/fan_login.html',email = user_email)
     return render_template("./forms/fan_login.html")
             
@@ -183,7 +186,7 @@ def artist_signup():
                     db.session.commit()
                     #login_user(new_user, remember=True)
                     flash('Account created!', 'success')
-                    return redirect(url_for('artist_login'))
+                    # return redirect(url_for('artist_login'))
                     
                 except:
                     flash('failed to register!', 'error')
@@ -201,17 +204,20 @@ def artist_signup():
 def artist_login():
     if request.method == "POST":
        
-        user_name = request.form.get('username')
+        user_email = request.form.get('email')
         password = request.form.get('password')
         
-        user = Artist.query.filter_by(username = user_name).first()
-        user_password = user.password
-        is_valid = check_password_hash(user_password, password)
-        if is_valid and user:
-            return render_template('./pages/hom.html')
+        user = Artist.query.filter_by(email = user_email).first()
+        if user:
+            user_password = user.password
+            is_valid = check_password_hash(user_password, password)
+            if is_valid:
+                return render_template('./pages/home.html')
+            else:
+                flash('Invalid password')
         else:
             
-            flash('Invalid email or password','error')
+            flash('Account doesnt exist','error')
             return render_template('./forms/login.html')
     return render_template("./forms/artist_login.html")
             
