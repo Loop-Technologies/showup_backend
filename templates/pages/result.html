@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    {% if Artist_result %}
+    <h2>Artists:</h2>
+    <ul>
+        {% for Artist in Artist_result %}
+            <li>{{ Artist.username }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if show_result %}
+    <h2>Shows:</h2>
+    <ul>
+        {% for Show in Show_result %}
+            <li>{{ Show.show_name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if Venue_result %}
+    <h2>Venues:</h2>
+    <ul>
+        {% for Venue in Venue_result %}
+            <li>{{ Venue.venue_name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
+
