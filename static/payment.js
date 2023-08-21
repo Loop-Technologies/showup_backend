@@ -16,7 +16,8 @@ function payWithPaystack(e) {
     onClose: function(){
       alert('Window closed.');
     },
-    callback: function(response){
+    callback: function(){
+      redirect(url_for('payment_complete','home'))
       let message = 'Payment complete! Reference: ' + response.reference;
       alert(message);
     }

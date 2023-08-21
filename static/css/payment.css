@@ -1,0 +1,80 @@
+.jumbotron{
+   height: 100px;
+   
+}
+.jumbotron a{
+  color: #5f5d5d;
+  text-decoration: none;
+}
+.jumbotron a:hover{
+  color: #5f5d5d;
+  text-decoration: none;
+}
+.accordion{
+  border: 2px solid grey;
+  margin-bottom: 100px;
+  
+}
+.image img{
+    width: 50px;
+    height: 50px;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+.col-50 {
+  -ms-flex: 50%;
+  flex: 50%;
+  padding: 0 16px;
+}
+.panel-container {
+  background-color: #f2f2f2;
+  padding: 5px 10px 25px 10px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  margin: 100px auto;
+}
+input[type=text] ,input[type=tel],input[type=date]{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+.btn a{
+  text-decoration: none;
+  color: black;
+  background-color: #b5d887;
+  padding: 12px;
+  margin: 10px auto;
+  margin-left: -11px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+.btn a:hover {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+  @media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+  }
