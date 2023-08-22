@@ -62,18 +62,19 @@ from models import db, Fan, Artist, Show, Venue
 def index():
     return render_template('/pages/index.html')
 
-
+# from sqlalchemy import text
 # search route ... can search for any radom thing here using the search field and getthe resuls 
 @app.route('/search', methods=['POST'])
 def search():
     if request.method == 'POST':
     # running a search query  for shows veneus artis 
         search_query = request.form['search_query']
+
         Artist_result = Artist.query.filter(Artist.username.ilike(f'%{search_query}%')).all()
         Show_result = Show.query.filter(Show.show_name.ilike(f'%{search_query}%')).all()
         Venue_result = Venue.query.filter(Venue.venue_name.ilike(f'%{search_query}%')).all()
 
-
+        print("User searched for:", search_query)
 # if no search found from the user input, return the error page 
     if not Artist_result and not Show_result and not Venue_result:
         return render_template('/pages/error.html')
@@ -81,6 +82,28 @@ def search():
 
 
 
+# @app.route('/search', methods=['POST'])
+# def search():
+#     if request.method == 'POST':
+#         # Running a search query for shows, venues, and artists
+#         search_query = request.form['search_query']
+
+#         # Construct the parameterized query for each search type
+#         artist_query = text("SELECT * FROM artist WHERE username ILIKE :search_query")
+#         show_query = text("SELECT * FROM show WHERE show_name ILIKE :search_query")
+#         venue_query = text("SELECT * FROM venue WHERE venue_name ILIKE :search_query")
+
+#         # Execute the parameterized queries with the search query as a parameter
+#         Artist_result = db.engine.execute(artist_query, search_query=f'%{search_query}%').fetchall()
+#         Show_result = db.engine.execute(show_query, search_query=f'%{search_query}%').fetchall()
+#         Venue_result = db.engine.execute(venue_query, search_query=f'%{search_query}%').fetchall()
+
+#         # If no search results found from the user input, return the error page
+#         if not Artist_result and not Show_result and not Venue_result:
+#             return render_template('/pages/error.html')
+
+#         return render_template('/pages/result.html', Artist_result=Artist_result, Show_result=Show_result, Venue_result=Venue_result)
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
