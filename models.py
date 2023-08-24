@@ -12,7 +12,7 @@ from config import db
 #     venue_photo= db.Column(db.Varchar(500), nullable=False)
 
 
-class Show (db.Model):
+class Shows (db.Model):
   show_id=db.Column(db.Integer, primary_key=True)
   show_name=db.Column(db.String(100),nullable=False)
   show_date=db.Column(db.DateTime,nullable=False)

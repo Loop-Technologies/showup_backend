@@ -1,4 +1,4 @@
- CREATE TABLE Show(
+ CREATE TABLE Shows(
  show_id INT4 PRIMARY KEY,
   show_name VARCHAR(100) NOT NULL,
   show_date timestamp NOT NULL,
@@ -36,3 +36,21 @@ values(9,'Night of Fame', '2023-09-03 21:30:00', 9, 9, 9);
 
 insert into Show(show_id ,show_name, show_date, venue_id, artist_id, fan_id)
 values(10,'Night of Fame', '2023-09-03 22:30:00', 10, 10, 10);
+
+-- insert into Show(show_id ,show_name, show_date, venue_id, artist_id, fan_id)
+-- values(10,'Fame Night', '2023-09-04 22:30:00', 10, 10, 10);
+
+-- insert into Show(show_id ,show_name, show_date, venue_id, artist_id, fan_id)
+-- values(10,'  Sing AllNight ', '2023-09-23 22:30:00', 10, 10, 10);
+
+-- insert into Show(show_id ,show_name, show_date, venue_id, artist_id, fan_id)
+-- values(10,'Dance Afro', '2023-10-03 22:30:00', 10, 10, 10);
+
+-- insert into Show(show_id ,show_name, show_date, venue_id, artist_id, fan_id)
+-- values(10,'Night of Fame', '2023-09-03 22:30:00', 10, 10, 10);
+
+-- insert into Show(show_id ,show_name, show_date, venue_id, artist_id, fan_id)
+-- values(10,'Night of Fame', '2023-09-03 22:30:00', 10, 10, 10);
+
+-- insert into Show(show_id ,show_name, show_date, venue_id, artist_id, fan_id)
+-- values(10,'Night of Fame', '2023-09-03 22:30:00', 10, 10, 10);
