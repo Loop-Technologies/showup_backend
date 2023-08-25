@@ -44,7 +44,7 @@
             <a class="nav-link" href={{url_for("tickets")}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tickets</a>
           </li>
         </ul>
-        <form class="d-flex ms-auto"  role="search" action="fan_data" method="post">
+        <form class="d-flex ms-auto"  role="search" action="#" method="post">
           <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button> -->
           <div class="input-group ">
@@ -56,35 +56,14 @@
           </div>
           
         </form>
-        
-       
+              
   </nav>
 
-  <button class="btn btn-success fw-bold" id="profile" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-    Profile<i class="bi bi-person"></i>
-  </button>
-  
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">Account name</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div>
-        Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-      </div>
-      <div class="dropdown mt-3">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
-    </div>
+  <div class="alert alert-warning" role="alert">
+    <p class="h1 mx-auto"><i class="bi bi-exclamation-octagon-fill"></i>No results! Check your Spelling and try again</p>
   </div>
+  
+  
   
   <script src="/static/js/bootstrap.bundle.min.js"></script>
   <script src="/static/js/jquery.dataTables.min.js"></script>

@@ -1,0 +1,227 @@
+body{
+    background-color: rgb(212, 212, 212);
+   
+}
+.navbar{
+    background-color: rgb(77, 74, 74);
+}
+.navbar-brand{
+    color: rgb(19, 75, 38);
+}
+.navbar a{
+    color: aliceblue;
+}
+#home{
+    color: aliceblue;
+}
+.navbar li{
+    margin-left: 30px;
+    border: 1px solid rgb(133, 128, 128);
+    border-radius: 20px;
+    width: 100px;
+}
+.dropdown-menu{
+    height: 42rem;
+   
+}
+
+#data_table_t{
+    /* width: 87rem; */
+    /* margin: 0 10px 0 10px; */
+    align-self: center;
+    justify-self: center;
+    margin-left: 3rem;
+    margin-top: 4rem;
+   
+    
+   
+}
+
+#data_table_v{
+    /* width: 87rem; */
+    /* margin: 0 10px 0 10px; */
+    align-self: center;
+    justify-self: center;
+    margin-left: 3rem;
+    margin-top: 4rem;
+}
+
+#data_table_S{
+   
+    align-self: center;
+    justify-self: center;
+    margin-left: 5rem;
+    margin-top: 4rem;
+}
+
+
+#data_table_a {
+    align-self: center;
+    justify-self: center;
+    margin-left: 10rem;
+    margin-top: 4rem;
+}
+
+
+#data_table_f {
+    align-self: center;
+    justify-self: center;
+    margin-left: 10rem;
+    margin-top: 4rem;
+}
+
+
+
+form button i{
+    color: aliceblue;
+}
+
+#offcanvasExample{
+    background-color: rgb(58, 55, 55);
+}
+
+
+#profile{
+    text-transform: uppercase;
+    border-radius: 0px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+
+
+.md-h{
+    background-color:  rgb(7, 105, 59);
+}
+.actions{
+    display:flex ;
+    justify-content: space-between;
+    margin-right: -20px;
+    width: max-content;
+}
+
+
+.actions #delete{
+    color: crimson;
+}
+
+
+.actions #edit{
+    color: rgb(9, 133, 75);
+    
+}
+
+.actions .delete{
+    margin-left: 20px;
+}
+
+.btn-close {
+    color: white;
+}
+
+.add-venue{
+    color: white;
+}
+.modal-title {
+    color: white;
+}
+
+#add_item{
+    margin-bottom: -123px;
+    margin-left: 5px;
+}
+
+.new_venue input {
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+.alert-warning {
+    margin-top: 50px;
+}
+
+.offcanvas {
+    background-color:  rgb(248, 237, 222);
+}
+
+.offcanvas-title {
+    color: white;
+}
+
+.edit_form {
+    width: 500px;
+}
+.s_table_container {
+    margin-top: 4rem;
+    display: flex;
+    max-height: 400px;
+    width: 80rem;
+    overflow-y: auto; 
+}
+
+
+
+.form_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    max-height: 900px;
+    background-color: rgb(212, 212, 212);
+}
+
+.submit{
+    display: flex;
+    justify-content: right;
+    align-items: self-end;
+}
+.main-container {
+    display: flex;
+    width: 90rem;
+}
+
+.modal-buttons {
+    display: block;
+    width: 170px;
+    padding-top: 8px;
+    height: 200px;
+   
+}
+
+.modal-buttons .ftns-1 {
+    margin-top: 90px;
+    margin-left: 5px;
+   
+}
+
+
+.edit_form_container {
+    overflow-y: auto;
+    max-height: 1000px;
+    display:flex;    
+    justify-content: center;
+    align-items: center;
+}
+
+.md-2 {
+    width: 80rem;
+    margin-left: -25rem;
+}
+
+.select_field {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+/* #fan-container {
+    overflow-y: auto;
+
+} */
+#poster_label {
+    margin-bottom: -50px;
+}
+
+#fan-container {
+    overflow-y: auto;
+    max-height: 600px;
+}

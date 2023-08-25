@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="./static/css/dataTables.bootstrap5.min.css"> -->
+    <link rel="stylesheet" href="/static/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+ 
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold text-success" href={{url_for("home")}}>SHOWUP</a>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+             
+              <li class="nav-item">
+                <a class="nav-link fw-bold" href={{url_for("venues")}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back</a>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+   
+     <div class="edit_form_container">
+      {% for venue in venues %}
+     <form class="edit_form" action="/venues/edit/{{venue.venue_id}}" method="post">
+      
+     <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Artist ID</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" value="{{venue.artist_id}}" name="a_id" required>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Venue Name</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" value="{{venue.venue_name}}" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Venue Capacity</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" value="{{venue.venue_capacity}}" name="capacity" required>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Venue Price</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" value="{{venue.venue_price}}" name="price" required>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Venue State</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" value="{{venue.venue_state}}" name="state" required>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Venue Location</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" value="{{venue.venue_location}}" name="location" required>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Venue Photo</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" value="{{venue.venue_photo}}" name="photo" required>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Show</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" value="{{venue.show}}" name="show" >
+      </div>
+      <div class="submit">
+        <button type="submit" class="btn btn-success">Save</button></a>
+      </div>
+     
+    </form>
+    {% endfor %}
+  </div>
+
+
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/jquery.dataTables.min.js"></script>
+  <script src="/static/js/jquery-3.7.0.js"></script>
+  <script src="/static/js/dataTables.bootstrap5.min.js"></script>
+  <script src="/static/js/script.js"></script>
+</body>
+</html>
