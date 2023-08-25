@@ -2,3 +2,7 @@ venv/
 img
 test1.html
 test.html
+models.py
+venue_listing.py
+requirements.txt
+static/icons/

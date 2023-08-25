@@ -9,40 +9,55 @@
     border-radius: 10px;
     box-shadow: 12px 12px 22px gray;
     padding-right: 0%;
-    margin-top: 20px;
+    margin-top: -5px;
+    width: 100%;
+    height: 500px; 
+    
 }
 
-.l-img{
+.row2{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 12px 12px 22px gray;
+    padding-right: 0%;
+    margin-top: 150px;
+    height:500px ;
+    width: 100%;
+    margin-left: 100px;
+
+}
+
+#l-img{
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    border-top-right-radius: ;
-    border-bottom-right-radius: ;
-    height: 100%;
+    border-top-right-radius:10px ;
+    border-bottom-right-radius:10px ;
+    height: 500px;
     width: 100%;
 }
 
-.F-img{
+#F-img{
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    border-top-right-radius: ;
-    border-bottom-right-radius: ;
-    height: 100%;
+    border-top-right-radius:10px ;
+    border-bottom-right-radius:10px ;
+    height: 500px;
     width: 100%;
 }
 
-.A-img{
+#A-img{
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    border-top-right-radius: ;
-    border-bottom-right-radius: ;
+    border-top-right-radius:10px ;
+    border-bottom-right-radius:10px;
     width: 100%;
-    height: 80%;
+    height: 500px;
     
 }
 
 .register h1{
-    font-size: 4rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 700px;
     font-family: 'Pacifico', cursive;
 }
 
@@ -62,16 +77,12 @@
     border-radius: 30px;
     font-weight: bold;
     margin-left: 40px;
-   
 }
 .btn1:hover{
-    color: white;
-    background-color: rgb(5, 107, 5);
-    /*background-color: white;
+    background-color: white;
     border: 1px solid;
-    color: black;*/
-    transform: scale(0.90);
-
+    color: black;
+    
 }
 
 .btn2{
@@ -83,7 +94,7 @@
     color: white;
     border-radius: 30px;
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: -30px;
     
 }
 
@@ -91,78 +102,116 @@
     background-color: white;
     border: 1px solid;
     color: black;
-    
 }
-.inp{
-    height: 50px;
-    width: 100%;
-    border: ;
- padding-left: 10px;
- width: 250px;
- margin-left: 30px;
+.btn2:active{
+    background-color: rgb(5, 107, 5);
+    border: 1px solid;
+    color: rgb(255, 255, 255);
 }
 
-.inp2{
-    height: 50px;
-    width: 100%;
- padding-left:10px;
- margin-left:20px;
- width: 250px;
-
- 
- 
-}
-
-section{
+.section{
     height: 300px;
 }
 
-.logo-r{
-    width: 200px;
-    height: 200px;
-    padding: 0;  
+form{
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.s-img{
-    height: 600px;
+#fullname, #email, #password2, #phone, #password {
+    height: 50px;
+ padding-left: 10px;
+}
+   
+.input-control {
+    display: flex;
+    flex-direction: column;
 }
 
-.form-row {
-   margin-left: -60px;
+.input-control input{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+   
+    padding: 10px;
+
 }
 
-.the1{
-    height: 500px;
+.input-control input:focus {
+    outline: 0;
 }
 
-ul{
-    background-color: rgb(182, 143, 218);
-    width: 100%;
+.input-control.success input{
+    border-color: #09c372;
+}
+
+.input-control.error input{
+    border-color: #ff3860;
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+
+#int4{
+    height: 50px;
+ padding-left: 10px;
+}
+   
+#int5{
+    height: 50px;
+ padding-left: 10px;
+ 
+
+}
+
+
+  .btn3{
+border: none;
+outline: none;
+height: 50px;
+width: 40%;
+background-color: rgb(5, 107, 5);
+color: white;
+border-radius: 30px;
+font-weight: bold;
+
+
+}
+
+.btn3:hover{
+background-color: white;
+border: 1px solid;
+color: black;
+}
+.btn3:active{
+background-color: rgb(5, 107, 5);
+border: 1px solid;
+color: rgb(255, 255, 255);
+}
+
+
+.flash-messages {
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    margin-bottom: 10px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .flash-messages li {
+    margin-bottom: 5px;
     list-style-type: none;
-    transition: 3s;
-    align-items:  center;
+  }
+
+  .flash-message {
+    color: red;
+  }
+.close-button {
+    border: 0;
 }
-
-ul li{
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-}
-
-#enter_info{
-    font-size:1.5em;
-    display: inline-block;
-    letter-spacing: nowrap;
-    /*border-right: solid 3px black;*/
-    width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-
-    animation: 
-    type 1s steps(33) 1s forwards,
-    blink 0.5s steps(1) infinite;
-}
-
-@keyframes type{
-    to {width: 33ch}
-}
-

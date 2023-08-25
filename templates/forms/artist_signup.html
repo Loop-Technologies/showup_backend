@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" initial-scale="1.0">
+<title>Show up</title>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="js/bootstrap.min.js">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<script defer src="/static/js/signup.js"></script> 
+<!--for the font-->
+
+    </head>
+    <body>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          <ul>
+            {% for message in messages %}
+              <li>
+                <span class="flash-message">{{ message }}</span>
+               
+                  <button class="close-button" onclick="closeMessage(this)"><i class="bi bi-x-lg"></i></button>
+                
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+      <section>
+          <div class="register py-5 bg-light">
+            <div class="container">
+              <div class="row  no-gutters">
+                 <div class="col-lg-5 col-sm-">
+                     <img class=" card-img" id="A-img" src="/static/img/A.jpg" class="img-fluid" alt="">
+                     <div class="card-img-overlay">
+                      <div class="card-body text-light">
+                        <p  class="card-title display-4 font-weight-bolder  ">Welcome Artist</p>
+                        <p class="card-title display-6 font-weight-light text-dark">Discover million of events,get alerts about your favorite artists,teams,plays and more </p> 
+                      </div>
+                 </div>
+                 </div>
+                     <div class="col-lg-7 text-center py-3">
+                        <h1 class="text-success">Welcome to showup</h1>
+                       <div id="pls"><h6>enter your informations</h6></div>
+                      
+                  <!-- form -->
+                       <form id="form" action="/artist/signup" method="post">
+                        <div class="input-control" >
+                            <input type="text" class="input-control" id="fullname" value="{{username}}" name="username" placeholder="Enter user name">
+                                <div class="error"></div>
+                          </div>
+                        <div class="form-row">  
+                          <div class="input-control mt-2 col-md-6">
+                            <input type="text" id="email" placeholder="Enter email" value="{{email}}" name="email">
+                                <div class="error"></div>
+                          </div>
+                          <div class="input-control mt-2  col-md-6">
+                            <input type="text"  id="phone" placeholder="Enter phone" value="{{phonenumber}}" name="phonenumber">
+                                 <div class="error"></div>
+                          </div>
+                          
+                          <div class="input-control mt-2  col-md-6">
+                            <input type="password" id="password" placeholder="Enter password" value="{{password}}" name="password">
+                                 <div class="error"></div>
+                          </div>
+                          <div class="input-control mt-2 col-md-6">
+                            <input type="password" id="password2" placeholder="Confirm password" value="{{password1}}" name="password1">
+                                <div class="error"></div>
+                          </div>
+                          
+                        </div>
+                                              
+                              <!--button-->
+                          <div class="form-row py-2"> 
+                            <div class="offset-1 col-lg-10">
+                                 <button type="submit" class="btn2">Sign up</button>
+                            </div>
+                        </div>
+                        
+                         <!--forgot password-->
+                         <p>Already have an account? <a href={{url_for('artist_login')}}>Login</a></p>
+                           
+                      </form>
+                     </div>
+              </div>
+            </div>
+          </div>
+      </section>
+       
+
+    </body>
+</html>
