@@ -2,11 +2,11 @@ from flask import Flask, render_template, redirect, request, url_for, flash, Blu
 from sqlalchemy import create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import sessionmaker
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
+# from flask_admin import Admin
+# from flask_admin.contrib.sqla import ModelView
 from flask_login import UserMixin, LoginManager, current_user, login_user, logout_user, login_required
 from models import db, Fan, Artist, SysAdmin, Show,Payment
-from flask_paginate import Pagination, get_page_args
+# from flask_paginate import Pagination, get_page_args
 # from config import  SECRET_KEY, SQLALCHEMY_DATABASE_URI
 from config import app
 
@@ -24,7 +24,7 @@ def load_user(user):
 
 db.init_app(app)
 
-engine = create_engine('postgresql://postgres:teming334@localhost/showup')
+engine = create_engine('postgresql://postgres:Zonecoco2003.@localhost/postgres')
 session = sessionmaker(bind=engine)
 
 
