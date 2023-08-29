@@ -88,8 +88,8 @@
               </li>
             
               </ul>
-                  <form class="form-inline" action="/action_page.php">
-                    <input class="form-control mr-sm-2 mt-2" type="text" placeholder="Search">
+                  <form class="form-inline" action="{{ url_for('show') }}">
+                    <input class="form-control mr-sm-2 mt-2" type="text" name="search_term"  placeholder="Search">
                     <button class="btn btn-success" type="submit">Search</button>
                   </form>
             <button class="btn btn-success mx-4 px-4" type="submit">
@@ -108,10 +108,14 @@
         <div class="content">
         {% for item in items.items %}
             <div class="shows">
-                <p><b>#{{item.show_id}}</b></p>
+                <!-- <p><b>#{{item.show_id}}</b></p> -->
                 <b><p class="name"> {{item.show_name}}</p></b>
                 <p>{{item.show_date}}</p>
-                <p>{{item.venue_id}}</p>
+                {% for venue in venues %}
+                    {% if venue.venue_id == item.venue_id %}
+                        <p>{{ venue.venue_name }}</p>
+                    {% endif %}
+                {% endfor %}
                 <p>{{item.fan_id}}</p>
                 <p>{{item.artist_id}}</p>
               {{item.item}}  
