@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    {% if Artist_result %}
+    <h2>Artists:</h2>
+    <ul>
+        {% for Artist in Artist_result %}
+            <li>{{ Artist.username }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if show_result %}
+    <h2>Shows:</h2>
+    <ul>
+        {% for Show in Show_result %}
+            <li>{{ Show.show_name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if Venue_result %}
+    <h2>Venues:</h2>
+    <ul>
+        {% for Venue in Venue_result %}
+            <li>{{ Venue.venue_name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- artist_details.html -->
+    <!-- <section>
+        <h1>{{ artist.username }}</h1>
+        <div>
+            <img src="{{ artist.profile_picture }}" alt="Artist Profile Picture">
+        </div>
+        <div>
+            <h2>Music Types:</h2>
+            <ul>
+                {% for music_type in artist.music_types %}
+                    <li>{{ music_type }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h2>Past Shows:</h2>
+            <ul>
+                {% for show in artist.shows %}
+                    <li><a href="{{ url_for('show_details', show_name=show.show_name) }}">{{ show.show_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section> -->
+<!-- venue_details.html -->
+<!-- venue_details.html -->
+<section>
+    <h1>{{ venue.venue_name }}</h1>
+    <div>
+        <img src="{{ venue.venue_photo }}" alt="Venue Photo">
+    </div>
+    <div>
+        <h2>Capacity:</h2>
+        <p>{{ venue.venue_capacity }}</p>
+    </div>
+    <div>
+        <h2>Location:</h2>
+        <p>{{ venue.venue_location }}</p>
+    </div>
+    <div>
+        <h2>State:</h2>
+        <p>{{ venue.venue_state }}</p>
+    </div>
+    <div>
+        <h2>Past Shows:</h2>
+        <ul>
+            {% for show in shows %}
+                <li><a href="{{ url_for('show_details', show_name=show.show_name) }}">{{ show.show_name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+<!-- show_details.html -->
+<section>
+    <h1>{{ show.show_name }}</h1>
+    <div>
+        <h2>Date:</h2>
+        <p>{{ show.show_date }}</p>
+    </div>
+    <div>
+        <h2>Venue:</h2>
+        <p>{{ show.venue.venue_name }}</p>
+    </div>
+    <div>
+        <h2>Artist:</h2>
+        <p>{{ show.Artist.username }}</p>
+    </div>
+</section>
+</body>
+</html>

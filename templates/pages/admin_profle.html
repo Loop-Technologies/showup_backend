@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Profile</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4">Admin Profile</h1>
+
+      <div id="profileDetails">
+        <!-- Display user profile details here -->
+        <p><strong>First Name:</strong> {{ sysadmin.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ sysadmin.last_name }}</p>
+        <p><strong>Email:</strong> {{ sysadmin.email }}</p>
+        <p><strong>Password:</strong> {{ sysadmin.pasword }}</p>
+
+        <button id="editButton" class="btn btn-primary">Edit</button>
+        <form
+          id="deleteForm"
+          method="POST"
+          action="{{ url_for('delete_account') }}"
+        >
+          <input type="hidden" name="profile_type" value="admin" />
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+
+      <div id="editForm" style="display: none">
+        <!-- Edit form -->
+        <form
+          id="profileForm"
+          method="POST"
+          action="{{ url_for('admin_profile') }}"
+        >
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="first_name"
+              name="first_name"
+              value="{{ sysadmin.first_name }}"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="last_name"
+              name="last_name"
+              value="{{ sysadmin.last_name }}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              value="{{ sysadmin.email }}"
+            />
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              value="{{sysadmin.password}}"
+            />
+          </div> -->
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                value="{{sysadmin.password}}"
+              />
+              <div class="input-group-append">
+                <span
+                  class="input-group-text"
+                  id="togglePassword"
+                  onclick="togglePasswordVisibility()"
+                >
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Edit button click event
+        $("#editButton").click(function () {
+          $("#profileDetails").hide();
+          $("#editForm").show();
+        });
+
+        // Cancel button click event
+        $("#cancelButton").click(function () {
+          $("#editForm").hide();
+          $("#profileDetails").show();
+        });
+      });
+      function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var togglePasswordButton = document.getElementById("togglePassword");
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          togglePasswordButton.innerHTML =
+            '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
+        } else {
+          passwordInput.type = "password";
+          togglePasswordButton.innerHTML =
+            '<i class="fa fa-eye" aria-hidden="true"></i>';
+        }
+      }
+    </script>
+  </body>
+</html>

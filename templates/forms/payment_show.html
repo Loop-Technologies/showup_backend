@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet'
+   href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="/showup_backend/static/css/payment.css">
+    <link rel="stylesheet" href="/showup_backend/static/bootstrap.min.css">
+    <title>order confirmation</title>
+
+</head>
+<body>
+    <div class="jumbotron">
+        <a href="/showup_backend/templates/pages/show_details.html"><i class="fa fa-arrow-left"></i>    TICKET</a>
+    </div>
+    <h1 class="text-center mt-5 mb-5">order confirmation</h1>
+    <div class="container mt-5 details">  
+      <p class="mt-3" id="show">show title</p>
+      <p id="ticket">ticket type</p>
+    </div>
+
+    <form id="paymentForm" action="/pay" method="POST" class="was-validated">
+        <div class="container accordion mt-5" id="accordionExample">
+          <h3 class="mb-5 mt-2 text-center">Payment Methods</h3>
+            <div class="form-check mt-4">
+                <label class="form-check-label collapsed" for="paymentmethod" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  <input type="radio" id="paymentmethod" class="form-check-input" name="ccard">CREDIT CARD
+                </label>
+                <div class="icon-container">
+                  <i class="fa fa-cc-visa" style="color:navy;"></i>
+                  <i class="fa fa-cc-amex" style="color:blue;"></i>
+                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                  <i class="fa fa-cc-discover" style="color:orange;"></i>
+                </div>
+                <div id="collapseOne" class="collapse panel" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="container panel-container">
+                    <div class="row">
+                      <div class="col-50">
+                        <h3>Payment</h3>
+                        <label for="name"><i class="fa fa-user"></i>Name</label>
+                        <input type="text" id="name" name="firstname" placeholder="deontay" required>
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="jdarell@deontay.com" required>
+                        <label for="amount"><i class="fa fa-money"></i>Amount</label>
+                        <input type="number" id="amount" name="amount" placeholder="10000 FCFA" required>
+                        <label for="ccnum"><i class="fa fa-paper"></i> Credit card number</label>
+                        <input type="number" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required>
+                        <label for="expmonth">Exp date</label>
+                        <input type="date" id="expdate" name="expdate" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">PAY</button>
+                  </div>
+                </div>
+                <div>
+                  <label for="ticket_id">Ticket Type:</label>
+                  <select id="ticket_id" name="ticket_id" required>
+                      <option value="vip">VIP</option>
+                      <option value="premium">Premium</option>
+                  </select>
+              </div>
+            </div>
+
+            <div class="form-check ">
+                <label class="form-check-label collapsed" for="paymentmethod" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <input type="radio" id="paymentmethod" class="form-check-input" name="mobile">MOBILE MONEY
+                </label>
+                <div class="image mb-3">
+                    <img src="../../static/img/mtn.png" alt="">
+                    <img src="../../static/img/orange.jpeg" alt="">
+                </div>
+                <div id="collapseTwo" class="collapse panel" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="container panel-container">
+                    <div class="row">
+                      <div class="col-50">
+                        <h3>Payment</h3>
+                        <label for="name"><i class="fa fa-user"></i>Name</label>
+                        <input type="text" id="name" name="name" placeholder="DEONTAY DARELL" required>
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="darell@deontay.com" required>
+                        <label for="amount"><i class="fa fa-money"></i> Amount</label>
+                        <input type="number" id="amount" name="amount" placeholder="10000 FCFA" required>
+                        <label for="num"><i class="fa fa-phone"></i> phone number</label>
+                        <input type="tel" id="num" name="number" placeholder="682828948" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary">PAY</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+      // Get the form element
+const form = document.getElementById("paymentForm");
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+  if (validateForm()) {
+    form.submit();
+  }
+});
+
+// Function to validate the form fields
+function validateForm() {
+  // Get the input fields from the form
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const amountInput = document.getElementById("amount");
+  const ccnumInput = document.getElementById("ccnum");
+  const expdateInput = document.getElementById("expdate");
+  const ticketIdInput = document.getElementById("ticket_id");
+
+  // Validate each field
+  let isValid = true;
+
+  if (nameInput.value.trim() === "") {
+    nameInput.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    nameInput.classList.remove("is-invalid");
+    nameInput.classList.add("is-valid");
+  }
+
+  if (emailInput.value.trim() === "" || !isValidEmail(emailInput.value)) {
+    emailInput.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    emailInput.classList.remove("is-invalid");
+    emailInput.classList.add("is-valid");
+  }
+
+  if (amountInput.value.trim() === "" || isNaN(parseInt(amountInput.value))) {
+    amountInput.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    amountInput.classList.remove("is-invalid");
+    amountInput.classList.add("is-valid");
+  }
+
+  if (ccnumInput.value.trim() === "" || !isValidCreditCard(ccnumInput.value)) {
+    ccnumInput.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    ccnumInput.classList.remove("is-invalid");
+    ccnumInput.classList.add("is-valid");
+  }
+
+  if (expdateInput.value.trim() === "") {
+    expdateInput.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    expdateInput.classList.remove("is-invalid");
+    expdateInput.classList.add("is-valid");
+  }
+}
+function isCardExpired(expirationDate) {
+    // Get the current date
+    const currentDate = new Date(); 
+    const [month, year] = expirationDate.split('/').map(Number);
+  
+    // Get the current month and year
+    const expiration = new Date(year, month - 1);
+    return currentDate > expiration;
+  }
+  
+  // Example usage
+  const expirationDate = '12/2022'; // Replace with the actual expiration date
+  const isExpired = isCardExpired(expirationDate);
+  console.log(isExpired); // Output: false (if the current date is before December 2022)
+
+// Function to validate email address
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Function to validate credit card number
+function isValidCreditCard(ccnum) {
+  const ccnumRegex = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+  return ccnumRegex.test(ccnum);
+}
+
+function getCardType(cardNumber) {
+    // Remove any non-digit characters from the card number
+    const cleanedCardNumber = cardNumber.replace(/\D/g, '');
+  
+    // Regular expressions for each card type
+    const visaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/;  //removing none-space characters from thee fiels and puthing them correctly
+    const amexRegex = /^3[47][0-9]{13}$/;
+    const mastercardRegex = /^5[1-5][0-9]{14}$/;
+  
+    // Check if the card number matches the patterns
+    if (visaRegex.test(cleanedCardNumber)) {
+      return 'Visa';
+    } else if (amexRegex.test(cleanedCardNumber)) {
+      return 'Amex';
+    } else if (mastercardRegex.test(cleanedCardNumber)) {
+      return 'Mastercard';
+    } else {
+      return 'Unknown';
+    }
+  }
+  
+  // Example usage
+  const cardNumber = '4111-1111-1111-1111'; 
+  const cardType = getCardType(cardNumber);
+  console.log(cardType); // Output: Visa
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="/showup_backend/static/js/payment_validate.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script> 
+  </body>
+</body>
+</html>

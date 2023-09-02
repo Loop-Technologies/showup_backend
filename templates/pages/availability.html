@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Form</title>
+    <!-- Add your CSS stylesheets or inline styles here -->
+    <style>
+        /* Example CSS styles */
+        .booking{
+        padding: 10px;
+        justify-content: center;
+        width: 28px;
+        height: 15em;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 4px;
+            padding: 20px;
+            background-color: gray(234, 0, 255);
+
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type=text], select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Booking Form</h1>
+    <form action="/book_time" method="POST">
+        <div class="form-group">
+            <label for="venue_name">Venue_name:</label>
+            <input type="text" id="venue_name" name="venue_name" placeholder="Enter venue name" required>
+
+           <!-- <label for="venue_id">Venue:</label>
+            <input type="text" id="venue_id" name="venue_id" placeholder="Enter venue_id" required>-->
+        </div>
+        <div class="form-group">
+            <label for="session">Venue:</label>
+            <select id="session" name="session" multiple required>
+                <option value="" disabled selected>Select time session</option>
+                <option value="Morning">Morning (6AM - 9AM)</option>
+                <option value="Noon">Noon (11AM - 12PM)</option>
+                <option value="Afternoon">Afternoon (2PM - 5PM)</option>
+                <option value="Evening">Evening (7PM - 10PM)</option>
+                <option value="Dawn">Dawn (12AM - 3AM)</option>
+            </select>
+        <div class="form-group">
+            <a href="{{ url_for('pay') }}"><button>Book venue</button></a>
+        </div>
+    </form>
+
+    <!-- Display success or error message if applicable -->
+    {% if success_message %}
+        <p class="success-message">{{ success_message }}</p>
+    {% endif %}
+    {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>
+

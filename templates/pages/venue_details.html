@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>show details</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../../static/css/venuedetails.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/css/bootstrap5-toggle.min.css"rel="stylesheet">
+ 
+</head>
+<style>
+   
+          .conatainer{
+    background: url(/static/img/bg1.jpg);
+  }
+</style>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top mb-0">
+		<div class="container">
+			<a class="navbar-brand" href="#">SHOW<span>UP</span></a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item active">
+						<a class="nav-link" href="{{url_for('venues')}}">HOME</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../../templates/pages/about.html">ABOUT</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{url_for('contact')}}">CONTACT</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{url_for('artist_profile')}}">PROFILE</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+   <div class="banner">
+
+   </div>
+   <div class="container-fluid">
+      <div class="row details">
+         <div class="col-lg-6 col-sm-12 details1">
+            <h2 class="mt-2">MORE INFO:</h2>
+            <p>
+              <h5>Nestled in the heart of a bustling city, our venue, 'The Grand Haven', is a haven of elegance & charm. Step into a world of sophistication where modern design seamlessly blends with timeless architecture. The spacious interior boasts high ceilings, exquisite chandeliers, and tastefully adorned walls, creating an atmosphere of grandeur. With versatile event spaces, including a majestic ballroom and intimate lounges, 'The Grand Haven' offers the perfect setting for any occasion. Impeccable service and attention to detail ensure a seamless and unforgettable experience for guests. Whether hosting a wedding, corporate gala, or social event, our venue sets the stage for magical moments and cherished memories. Discover the epitome of refined luxury at 'The Grand Haven.</h5>
+            </p>  
+         </div>
+            <div class="col-lg-6  col-sm-12 details">
+                                
+                <h4 >VENUE NAME:<span class="text-white"> OMNISPORT</span></h4>
+                
+                <h4 >VENUE LOCATION:<span class="text-white"> LASKii</span></h4>
+              
+                <h4 >VENUE CAPACITY:<span class="text-white">10000</span></h4>
+                
+                <h4>CONTACT:<span class="text-white">+237 677723322</span></h4>
+                
+                <h4>PRICE:<span class="text-white">50000 CFA</span></h4>
+              
+                <h3><p class="text-black mt-3">Status: <input type="checkbox" checked data-toggle="toggle" data-on="Available" data-off="Unavailable" data-onstyle="success" data-offstyle="secondary"></p></h3>
+                
+            
+               <div class="container next-container mb-4">
+                 
+                  <a class="nav-link" href="{{url_for('book_time')}}"><button type="button" class="btn btn-success">BOOK NOW</button></a>
+              </div>
+            </div>
+      </div>
+   </div>
+   <footer>
+      <div class="container-fluid text-center">
+        <div class="row">
+          <div class="col-sm-3">
+            <h1>SHOWUP</h1>
+          </div>
+          <div class="col-sm-3">
+            <ul>
+              <li><h2>CONNECT</h2></li>
+              <li><a href="https://www.instagram.com">INSTAGRAM</a></li>
+              <li><a href="https://www.facebook.com">FACEBOOK</a></li>
+              <li><a href="https://www.twitter.com">TWITTER</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <ul>
+              <li><h2>SERVICES</h2></li>
+              <li><a href="#">VENUES</a></li>
+              <li><a href="../../templates/pages/home_show.html">TICKET SALES</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <ul>
+              <li><h2>HELP</h2></li>
+              <li><a href="{{url_for('contact')}}">CONTACT US</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </footer>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="../../js/bootstrap.min.js" ></script> 
+  <script src="../../static/js/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/js/bootstrap5-toggle.ecma<s.min.js"></script>
+</body>
+</html>

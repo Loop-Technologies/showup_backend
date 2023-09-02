@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet'
+   href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="../../static/css/payment.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <title>order confirmation</title>
+
+</head>
+<body>
+    <div class="jumbotron">
+        <a href="../../templates/pages/show_details"><i class="fa fa-arrow-left" style="color:#5f5d5d;"></i>    ORDER CONFIRMATION</a>
+    </div>    
+    <form id="paymentForm" action="/paystack/initialize" method="POST" class="was-validated">
+        <div class="container accordion mt-5" id="accordionExample">
+          <h3 class="mb-5 mt-2 text-center">Payment Methods</h3>
+            <div class="form-check">
+                <label class="form-check-label collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  <input type="radio" class="form-check-input" name="ccard">CREDIT CARD
+                </label>
+                <div class="icon-container">
+                  <i class="fa fa-cc-visa" style="color:navy;"></i>
+                  <i class="fa fa-cc-amex" style="color:blue;"></i>
+                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                  <i class="fa fa-cc-discover" style="color:orange;"></i>
+                </div>
+                <div id="collapseOne" class="collapse panel" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="container panel-container">
+                    <div class="row">
+                      <div class="col-50">
+                        <h3>Billing Address</h3>
+                        <label for="full_name"><i class="fa fa-user"></i> Full name</label>
+                        <input type="text" id="full_name" name="firstname" placeholder="deontay" required>
+
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="text" id="email" name="email" placeholder="youId@gmail.com" required>
+
+                        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                        <input type="text" id="address" name="address" placeholder="dirty south buea" required>
+
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                      </div>
+                      <div class="col-50">
+                        <h3>Payment</h3>
+                        <label for="name">Name on Card</label>
+                        <input type="text" id="name" name="cardname" placeholder="DEONTAY DARELL" required>
+
+                        <label for="card_number">Credit card number</label>
+                        <input type="text" id="card_number" name="card_number" placeholder="1111-2222-3333-4444" required>
+
+                        <label for="expmonth">Exp date</label>
+                        <input type="date" id="expdate" name="expdate" required>
+
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                      </div>
+                    </div>
+                    <button id="payButton" type="submit" class="btn"><a href="">Pay Now</a></button>
+                  </div>
+                </div>
+            </div>
+            <div class="form-check ">
+                <label class="form-check-label collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <input type="radio" class="form-check-input" name="mobile">MOBILE MONEY
+                </label>
+                <div class="image mb-3">
+                    <img src="../../static/img/mtn.png" alt="">
+                    <img src="../../static/img/orange.jpeg" alt="">
+                </div>
+                <div id="collapseTwo" class="collapse panel" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="container panel-container">
+                    <div class="row">
+                      <div class="col-50">
+                        <h3>payment</h3>
+                       
+                        <label for="amount"><i class="fa fa-user"></i> Amount</label>
+                        <input type="number" id="amount" name="amount" placeholder="1000000" required>
+
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="text" id="email" name="email" placeholder="darell@deontay.com" required>
+
+                        <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
+                        <input type="text" id="address" name="address" placeholder="dirty south buea" required>
+
+                        <label for="phone"></i> phone number</label>
+                        <input type="tel" id="phone" name="number" placeholder="682828948" required>
+
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                      </div>
+                    </div>
+                    <!-- <button type="submit" onclick="payWithPaystack()"> Pay Now</button> -->
+                    <button class="btn" type="submit" id="payButton" ><a href=>Pay Now</a></button>
+                    <button type="submit" onclick="payWithPaystack()"> Pay Now</button>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- <script>
+      const form = document.getElementById('paymentForm');
+      const payButton = document.getElementById('payButton');
+
+      form.addEventListener('submit', event => {
+          event.preventDefault();
+
+          // Disable the pay button to prevent multiple clicks
+          payButton.disabled = true;
+
+          // Retrieve form data
+          const formData = new FormData(form);
+          const amount = formData.get('amount');
+          const email = formData.get('email');
+          const address = formData.get('address');
+          const phone = formData.get('phone');
+          const full_name = formData.get('full_name');
+          // const full_name = formData.get('full_name');
+          // const phone = formData.get('phone');
+         
+
+          // Make a request to the Flask route to initialize the payment
+          fetch('/paystack/initialize', {
+              method: 'POST',
+              body: new URLSearchParams(formData)
+          })
+          .then(response => response.json())
+          .then(data => {
+              // Redirect the user to the Paystack authorization URL
+              const authorizationUrl = data.authorization_url;
+              window.location.href = authorizationUrl;
+          })
+          .catch(error => {
+              console.error('Payment initialization error:', error);
+              // Re-enable the pay button on error
+              payButton.disabled = false;
+          });
+      });
+  </script> -->
+  <script src="https://js.paystack.co/v1/inline.js"></script> 
+  <script src="/showup_backend/static/payment.js"></script>
+    <!-- <script src="https://js.paystack.co/v1/inline.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+  </body>
+</body>
+</html>

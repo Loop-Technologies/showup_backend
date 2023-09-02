@@ -1,6 +1,12 @@
+
+
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+
+
+
+from sqlalchemy import ForeignKeyConstraint
 
 class Fan(db.Model):
     __tablename__ = 'fan'
@@ -23,7 +29,7 @@ class Artist(db.Model):
     email = db.Column(db.String(150), nullable=False)
     phone_number = db.Column(db.String(150), nullable=False)
     password = db.Column(db.String, nullable=False)
-    photo = db.Column(db.String(500))
+    image = db.Column(db.String(500))
     seeking_venue = db.Column(db.String, nullable=False, default='OFF')
     facebook_link = db.Column(db.String(200))
     instagram_link = db.Column(db.String(100))
@@ -51,6 +57,12 @@ class Payment(db.Model):
     payment_method = db.Column(db.Enum('MOMO', 'OM', 'Card', name='paymentmethod'), nullable=False)
     payment_date = db.Column(db.TIMESTAMP)
     amount = db.Column(db.Numeric)
+
+    __table_args__ = (
+        ForeignKeyConstraint(['fan_id'], ['fan.fan_id']),
+        ForeignKeyConstraint(['artist_id'], ['artist.artist_id']),
+        ForeignKeyConstraint(['admin_id'], ['sysadmin.admin_id']),
+    )
 
 class Venue(db.Model):
     __tablename__ = 'venue'
@@ -83,3 +95,9 @@ class Ticket(db.Model):
     show_id = db.Column(db.Integer, db.ForeignKey('shows.show_id'), nullable=False)
     fan_id = db.Column(db.Integer, db.ForeignKey('fan.fan_id'), nullable=False)
     ticket_price = db.Column(db.Numeric, nullable=False, default=0)
+
+    __table_args__ = (
+        ForeignKeyConstraint(['show_id'], ['shows.show_id']),
+        ForeignKeyConstraint(['fan_id'], ['fan.fan_id']),
+    )
+   

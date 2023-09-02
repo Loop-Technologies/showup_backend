@@ -1,0 +1,290 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Fan Profile</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="fan.css" />
+    <style>
+      /* Global Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .profile-picture {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-details {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .profile-details h2 {
+        margin-bottom: 10px;
+      }
+
+      .profile-details p {
+        margin-bottom: 20px;
+      }
+
+      .edit-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .edit-button button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      .edit-button button:hover {
+        background-color: #555;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .form-group .form-control:focus {
+        outline: none;
+        border-color: #555;
+      }
+
+      .edit-delete {
+        display: flex;
+        column-gap: 3vw;
+        justify-content: center;
+      }
+
+      .form-group .btn-primary {
+        padding: 10px 20px;
+        background-color: #333;
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .form-group .btn-primary:hover {
+        background-color: #555;
+      }
+
+      /* Desktop View */
+      @media (min-width: 992px) {
+        .container {
+          margin-top: 50px;
+        }
+
+        .profile-details {
+          text-align: left;
+        }
+
+        .edit-button {
+          justify-content: flex-end;
+        }
+      }
+
+      /* Mobile View */
+      @media (max-width: 576px) {
+        .container {
+          margin-top: 20px;
+          padding: 10px;
+        }
+
+        .profile-details {
+          text-align: center;
+        }
+
+        .edit-button {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .edit-button button {
+          margin-top: 10px;
+          margin-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4">Fan Profile</h1>
+
+      <div>
+        <img src="{{ fan.photo }}" alt="I Love You" class="profile-picture" />
+      </div>
+      <div id="profileDetails" class="text-center"></div>
+
+      <!-- Display user profile details here -->
+      <p><strong>Name:</strong> {{ fan.full_name }}</p>
+      <p><strong>Email:</strong> {{ fan.email }}</p>
+      <p><strong>Phone:</strong> {{ fan.phone_number }}</p>
+
+      <div class="edit-delete">
+        <button id="editButton" class="btn btn-primary">Edit</button>
+        <form
+          id="deleteForm"
+          method="POST"
+          action="{{ url_for('delete_account') }}"
+        >
+          <input type="hidden" name="profile_type" value="fan" />
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+
+      <div id="editForm" style="display: none">
+        <form
+          id="profileForm"
+          method="POST"
+          action="{{ url_for('fan_profile') }}"
+        >
+          <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input
+              type="text"
+              id="full_name"
+              name="full_name"
+              class="form-control"
+              value="{{ fan.full_name }}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              value="{{ fan.email }}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Phone</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phone_number"
+              class="form-control"
+              value="{{ fan.phone_number }}"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                value="{{fan.password}}"
+              />
+              <div class="input-group-append">
+                <span
+                  class="input-group-text"
+                  id="togglePassword"
+                  onclick="togglePasswordVisibility()"
+                >
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="edit-button">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="cancelEdit()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script>
+        function cancelEdit() {
+          document.getElementById("profileDetails").style.display = "block";
+          document.getElementById("editForm").style.display = "none";
+        }
+
+        document
+          .getElementById("editButton")
+          .addEventListener("click", function () {
+            document.getElementById("profileDetails").style.display = "none";
+            document.getElementById("editForm").style.display = "block";
+          });
+
+        function togglePasswordVisibility() {
+          var passwordInput = document.getElementById("password");
+          var togglePasswordButton = document.getElementById("togglePassword");
+
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            togglePasswordButton.innerHTML =
+              '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
+          } else {
+            passwordInput.type = "password";
+            togglePasswordButton.innerHTML =
+              '<i class="fa fa-eye" aria-hidden="true"></i>';
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>
+ 

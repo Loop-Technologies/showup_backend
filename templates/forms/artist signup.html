@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" initial-scale="1.0">
+<title>Show up</title>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="js/bootstrap.min.js">
+<link rel="stylesheet" href="/static/css/style.css">
+<!--for the font-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+   
+</style>
+    </head>
+    <body>
+
+      <section>
+          <div class="register py-5 bg-light">
+            <div class="container">
+              <div class="row no-gutters">
+                 <div class="col-lg-5">
+                     <img class=" card-img" id="A-img" src="/static/img/A.jpg" class="img-fluid" alt="">
+                     <div class="card-img-overlay">
+                      <div class="card-body text-light">
+                        <p  class="card-title display-4 font-weight-bolder  ">Welcome Artist</p>
+                        <p class="card-title display-6 font-weight-light text-dark">Discover million of events,get alerts about your favorite artists,teams,plays and more — plus always- secure, effortless ticketing.</p> 
+                      </div>
+                 </div>
+                 </div>
+                     <div class="col-lg-7 text-center  py-3">
+                        <h1 class="text-success">Welcome to showup</h1>
+                             <div id="pls"><h6>enter your informations</h6></div>
+                      
+                             <form name="signupform" method="post" class="needs-validation" novalidate id="forms">
+                                   <!--fullname-->
+                               <div class="form-row pt-2 py-2"> 
+                                   <div class="offset-1 col-lg-10 ">
+                                <input type="text" id="inp" placeholder="Enter fullname" required>
+                                       <div class="invalid-feedback"> Please enter fullname</div>
+                                   </div>
+                               </div> 
+                                
+                                 <!--email-->
+                               <div class="form-row pt-2 py-2"> 
+                                <div class="offset-1 col-lg-10">
+                             <input type="email" id="inp" placeholder="Enter email" required>
+                                    <div class="invalid-feedback"> Please enter email</div>
+                                </div>
+                            </div> 
+
+                            <!--phone-->
+                            <div class="form-row pt-2 py-2"> 
+                              <div class="offset-1 col-lg-10">
+                           <input type="text" id="inp" placeholder="Enter phone" required>
+                                  <div class="invalid-feedback"> Please enter phone</div>
+                              </div>
+                          </div> 
+
+                          <!--password-->
+                          <div class="form-row pt-2 py-2"> 
+                            <div class="offset-1 col-lg-10">
+                         <input type="password" id="inp" placeholder="Enter password" required>
+                                <div class="invalid-feedback"> Please enter password</div>
+                            </div>
+                        </div> 
+
+                        <!--confirm password-->
+                        <div class="form-row pt-2 py-2"> 
+                          <div class="offset-1 col-lg-10">
+                       <input type="password" id="inp" placeholder="Confirm password" required>
+                              <div class="invalid-feedback"> Please Confirm password</div>
+                          </div>
+                      </div> 
+ 
+                            <!--button-->
+                          <div class="form-row py-2"> 
+                              <div class="offset-1 col-lg-10">
+                                   <button type="submit" class="btn2">Sign up</button>
+                              </div>
+                          </div>
+                          
+                           <!--forgot password-->
+                           <p>Already have an account? <a href="">Login</a></p>
+                             </form>
+                     </div>
+              </div>
+            </div>
+          </div>
+      </section>
+       
+
+    </body>
+</html>
